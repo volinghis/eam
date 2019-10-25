@@ -1,12 +1,15 @@
-package eam.eamPartLibrary.entity;
+package com.ehs.eam.eamPartLibrary.entity;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import com.ehs.common.base.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**   
 * Copyright: Copyright (c) 2019 西安东恒鑫源软件开发有限公司
@@ -29,9 +32,10 @@ public class EamPartLibrary extends BaseEntity {
 	// @Fields serialVersionUID : TODO
 	private static final long serialVersionUID = 1L;
 	
-	public static final String DEVICENAME="deviceName";
-	public static final String DEVICECODE="deviceCode";
+	public static final String DEVICE_NAME="deviceName";
+	public static final String DEVICE_CODE="deviceCode";
 	public static final String MODEL="model";
+	public static final String CATEGORY="category";
 	public static final String TYPE="type";
 	public static final String BRAND="brand";
 	public static final String NORM="norm";
@@ -39,30 +43,40 @@ public class EamPartLibrary extends BaseEntity {
 	public static final String UNIT="unit";
 	public static final String PRICE="price";
 	public static final String AMOUNT="amount";
-	public static final String WARNINGVALUE="warningValue";
+	public static final String WARNING_VALUE="warningValue";
 	public static final String MANUFACTURER="manufacturer";
 	public static final String SUPPLIER="supplier";
 	public static final String MATERIAL_TYPE_NAME="materialTypeName"; 
-	public static final String LABELCODE="labelCode";
+	public static final String LABEL_CODE="labelCode";
+	public static final String USE_LIFE="useLife";
+	public static final String WARRANTY_PERIOD="warrantyPeriod";
+	public static final String SCRAPPED_TIME="scrappedTime";
+	public static final String BUY_TIME="buyTime";
+	public static final String REMARK="remark";
 	public static final String SORT="sort";
 	
 	/**
-	 * 设备名称
+	 * 备件名称
 	 */
 	private String deviceName;
 	
 	/**
-	 * 设备编码
+	 * 备件编码
 	 */
 	private String deviceCode;
 	
 	/**
-	 * 设备型号
+	 * 备件型号
 	 */
 	private String model;
 	
 	/**
-	 * 设备类型
+	 * 设备类别
+	 */
+	private String category;
+	
+	/**
+	 * 备件类型
 	 */
 	private String type;
 	
@@ -120,6 +134,34 @@ public class EamPartLibrary extends BaseEntity {
 	 * 标签码
 	 */
 	private String labelCode;
+	
+	/**
+	 * 使用寿命
+	 */
+	private String useLife;
+	
+	/**
+	 * 保修期
+	 */
+	private String warrantyPeriod;
+	
+	/**
+	 * 报废时间
+	 */
+	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
+	private Timestamp scrappedTime;
+	
+	/**
+	 * 购买时间
+	 */
+	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
+	private Timestamp buyTime;
+	
+	/**
+	 * 备注
+	 */
+	@Column(length = 3000)
+	private String remark;
 	
 	/**
 	 * 排序
@@ -252,6 +294,54 @@ public class EamPartLibrary extends BaseEntity {
 
 	public void setSort(Integer sort) {
 		this.sort = sort;
+	}
+	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getUseLife() {
+		return useLife;
+	}
+
+	public void setUseLife(String useLife) {
+		this.useLife = useLife;
+	}
+
+	public String getWarrantyPeriod() {
+		return warrantyPeriod;
+	}
+
+	public void setWarrantyPeriod(String warrantyPeriod) {
+		this.warrantyPeriod = warrantyPeriod;
+	}
+
+	public Timestamp getScrappedTime() {
+		return scrappedTime;
+	}
+
+	public void setScrappedTime(Timestamp scrappedTime) {
+		this.scrappedTime = scrappedTime;
+	}
+
+	public Timestamp getBuyTime() {
+		return buyTime;
+	}
+
+	public void setBuyTime(Timestamp buyTime) {
+		this.buyTime = buyTime;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 	@Override
