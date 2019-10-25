@@ -72,7 +72,7 @@ var pageEdit = {
 		        if (valid) {
 		        	var s=this;
 		        	s.$Spin.show();
-		        	axios.post('/eam/eamPartLibrary/saveEamPartLibrary',s.formInline).then(response => {
+		        	axios.post('/eam/eam/eamPartLibrary/saveEamPartLibrary',s.formInline).then(response => {
 	        		   if(response.data.resultType=='ok'){
 	          			   parent.partLibraryList.flushData();
 	          			   this.$Message.success({content:response.data.message,onClose:function(){

@@ -125,19 +125,14 @@ var partLibraryList = new Vue({
    		 this.flushData();
    	 },
    	 flushData:function(){
-		var self=this;
-//			if(OrgPage){
-//				if(OrgPage.getSelectData()!=null){
-//					this.queryBean.selectedOrg=OrgPage.getSelectData().key;
-//				}
-//			}
-//			self.queryBean.totalCount=0;
-//			self.queryBean.dataList=[];
-//			axios.post('/org/orgUser/getOrgUserList',self.queryBean).then(response => {
-//				self.queryBean.totalCount=response.data.totalCount;
-//				self.queryBean.dataList=response.data.dataList;
-//				
-//			});
+		var _this=this;
+			_this.queryBean.totalCount=0;
+			_this.queryBean.dataList=[];
+			axios.post('/eam/eam/eamPartLibrary/getEamPartLibraryList',_this.queryBean).then(response => {
+				_this.queryBean.totalCount=response.data.totalCount;
+				_this.queryBean.dataList=response.data.dataList;
+				
+			});
     	},
         show(index) {
         	var c={title:'编辑备件',url:'/eam/html/eamPartLibrary/eamPartLibraryEdit.html?key='+index};
@@ -152,8 +147,8 @@ var partLibraryList = new Vue({
 					title:'',
 					content:'删除后数据将无法恢复，是否继续？',
 					onOk:function(){
-						var self=this;
-						self.$Spin.show();
+						var _this=this;
+						_this.$Spin.show();
 		    			axios.get('/org/orgUser/deleteOrgUser?key='+index).then(response => {
 		    				   if(response.data.resultType=='ok'){
 		    					   partLibraryList.flushData();
@@ -167,7 +162,7 @@ var partLibraryList = new Vue({
 		    			}).catch(function(error){
 		    				
 		    			}).then(function () {
-		    				self.$Spin.hide();
+		    				_this.$Spin.hide();
 		    			});
 					}
 				});

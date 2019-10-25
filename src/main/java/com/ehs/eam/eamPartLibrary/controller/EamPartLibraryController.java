@@ -41,8 +41,19 @@ public class EamPartLibraryController {
 				return JsonUtils.toJsonString(resultBean.error("保存数据失败:已存在相同编号"));
 			}
 		}
-		EamPartLibrary eLibrary= eamPartLibraryService.saveOrUpdateUser(eamPartLibrary);
-		logger.info("===========退出saveEamPartLibrary方法=============");
-		return JsonUtils.toJsonString(resultBean.ok("保存成功！",eLibrary.getKey()));
+		if (eamPartLibrary != null) {
+			EamPartLibrary eLibrary= eamPartLibraryService.saveOrUpdateUser(eamPartLibrary);
+			logger.info("===========退出saveEamPartLibrary方法=============");
+			return JsonUtils.toJsonString(resultBean.ok("保存成功！",eLibrary.getKey()));
+		}
+		return JsonUtils.toJsonString(resultBean.error("保存数据失败"));
+	}
+	
+	@RequestMapping(value = "/eam/eamPartLibrary/getEamPartLibraryList")
+	@ResponseBody
+	public String getEamPartLibraryList(HttpServletRequest request,HttpServletResponse response) {
+		logger.info("===========进入getEamPartLibraryList方法=============");
+		System.out.println("hhhhhhhhh");
+		return null;
 	}
 }
