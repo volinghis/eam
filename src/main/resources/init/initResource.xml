@@ -3,11 +3,11 @@
   <menus targetClass="com.ehs.common.auth.entity.SysMenu"> 
     <menu dataCode="deviceManagerSystem" key="deviceManagerSystem"  icon="md-construct" name="设备管理系统" sort="1"> 
     	<menu dataCode="equipmentAccount" key="equipmentAccount"  icon="md-settings" name="设备管理" sort="1" parentKey="deviceManagerSystem">
-    		<menu dataCode="eamAccountPrint" key="eamAccountPrint"  icon="md-settings" url="/html/eam/eamAccountPrint/eamAccountPrintList.html" name="设备台账" sort="1" parentKey="equipmentAccount"/>
+    		<menu dataCode="eamAccountPrint" key="eamAccountPrint"  icon="md-settings" url="/eam/html/eamAccountPrint/eamAccountPrintList.html" name="设备台账" sort="1" parentKey="equipmentAccount"/>
     	</menu>
      <!--    <menu dataCode="edmRepairAccountPrint" key="edmRepairAccountPrint" icon="fa fa-wrench"  url="/eam/action/edmLibraryManager/edmRepairAccountPrint" name="检修台账" sort="2" parentKey="deviceManagerSystem"/>  --> 
         <menu dataCode="eamSpareParts" key="eamSpareParts" icon="md-hammer" name="备品备件管理" sort="3" parentKey="deviceManagerSystem">
-        	<menu dataCode="eamPartLibrary" key="eamPartLibrary" icon="md-hammer" url="/html/eam/eamPartLibrary/eamPartLibraryList.html" name="备件台账" sort="1" parentKey="eamSpareParts"/>
+        	<menu dataCode="eamPartLibrary" key="eamPartLibrary" icon="md-hammer" url="/eam/html/eamPartLibrary/eamPartLibraryList.html" name="备件台账" sort="1" parentKey="eamSpareParts"/>
         </menu>
     </menu>
   </menus> 
