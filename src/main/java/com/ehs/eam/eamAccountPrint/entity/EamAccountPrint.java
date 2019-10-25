@@ -6,7 +6,7 @@
  * @author: qjj   
  * @date: 2019年10月25日 上午11:27:15 
  */
-package com.ehs.eam.entity;
+package com.ehs.eam.eamAccountPrint.entity;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
