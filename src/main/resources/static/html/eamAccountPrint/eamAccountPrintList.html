@@ -20,7 +20,7 @@ width: 100%;
     <div style="float:left">
         <i-input search @on-search="doSearch" enter-button placeholder="请输入设备编码" />
     </div>
-    <i-table border  stripe :max-height="tableMaxHeight" :columns="listColumns"  :data="dataList" style="float:right" ref="table"></i-table>
+    <i-table border :max-height="tableMaxHeight" :columns="listColumns"  :data="dataList" style="float:right" ref="table"></i-table>
     <div style="float:left;margin-top:5px;">
     	<i-button type="primary" size="large" @click="exportData()"><icon type="ios-download-outline"></icon>数据导出 </i-button>
     </div>

@@ -39,11 +39,10 @@ var pageEdit = {
 				        if (valid) {
 				        	var self=this;
 				        	self.$Spin.show();
-				        	console.log(this.editModel);
 				        	axios.post('/eam/eam/eamAccountPrint/saveEamAccountPrint',this.editModel).then(response => {
 				        		   if(response.data.resultType=='ok'){
-				        			   console.log(response.data);
 				          			   parent.eamAccountPrintPage.flushData();
+				          			   console.log(response.data);
 				          			   this.$Message.success({content:response.data.message,onClose:function(){
 		        						   GPageModel.close();
 		        					   }});
