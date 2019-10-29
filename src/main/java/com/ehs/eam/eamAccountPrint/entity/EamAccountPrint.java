@@ -11,10 +11,11 @@ package com.ehs.eam.eamAccountPrint.entity;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.ehs.common.base.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -47,6 +48,7 @@ public class EamAccountPrint extends BaseEntity {
 	public static final String INSTALL_LOCATION = "installLocation" ;
 	public static final String PURCHASE_TIME = "purchaseTime" ;
 	public static final String BUYING_PRICE = "buyingPrice" ;
+	public static final String REMARKS = "remarks" ;
 
 
 	/**
@@ -82,8 +84,7 @@ public class EamAccountPrint extends BaseEntity {
 	/**
 	 *采购时间
 	 */
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")
 	private Timestamp purchaseTime;
 	
 	/**
@@ -91,8 +92,11 @@ public class EamAccountPrint extends BaseEntity {
 	 */
 	private BigDecimal buyingPrice;
 	
-	
-	
+	/**
+	 * 备注
+	 */
+	@Column(length = 3000)
+	private String remarks;
 
 	/**
 	 * @return the deviceNum
@@ -207,7 +211,19 @@ public class EamAccountPrint extends BaseEntity {
 	}
 
 
+	/**
+	 * @return the remarks
+	 */
+	public String getRemarks() {
+		return remarks;
+	}
 
+	/**
+	 * @param remarks the remarks to set
+	 */
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 
 	/** 
 	* @see com.ehs.common.base.entity.BaseEntity#getForeignClasses()  
