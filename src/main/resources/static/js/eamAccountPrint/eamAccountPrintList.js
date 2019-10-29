@@ -61,30 +61,30 @@ var eamAccountPrintPage=new Vue({
                 	title: '设备状态',
                 	key: 'deviceStatus',
                 	render: (h, params) => {
-                		 var status = params.row.deviceStatus; 
-                		 var color,text;
-                         if (status==='normal'){ 
+                		 var s = params.row.deviceStatus; 
+                		 var status,text;
+                         if (s==='normal'){ 
                         	text='正常';
-                        	color='success';
+                        	status='success';
                          };
-                         if (status==='error'){ 
+                         if (s==='error'){ 
                         	 text='故障';
-                        	 color='error';
+                        	 status='error';
                          };
-                         if (status==='maintenance'){ 
+                         if (s==='maintenance'){ 
                         	 text='保养';
-                        	 color='warning';
+                        	 status='warning';
                          };
-                         if (status==='idle'){ 
+                         if (s==='idle'){ 
                         	 text='闲置';
-                        	 color='primary';
+                        	 status='processing';
                          };
-                         return h('Tag', {
+                         return h('Badge', {
                              props: {
-                                 type: 'dot',
-                                 color: color
+                            	 status: status,
+                            	 text:text
                              }
-                         }, text);
+                         });
                     }
                 },
                 {

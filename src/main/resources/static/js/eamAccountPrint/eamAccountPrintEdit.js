@@ -19,6 +19,9 @@ var pageEdit = {
                     ],
                     purchaseTime: [
                         { required: true, type: 'date', message: '请选择采购日期', trigger: 'change' }
+                    ] ,
+                    deviceStatus: [
+                        { required: true, message: '请选择设备状态', trigger: 'change' }
                     ]
                 }
             }
@@ -42,7 +45,6 @@ var pageEdit = {
 				        	axios.post('/eam/eam/eamAccountPrint/saveEamAccountPrint',this.editModel).then(response => {
 				        		   if(response.data.resultType=='ok'){
 				          			   parent.eamAccountPrintPage.flushData();
-				          			   console.log(response.data);
 				          			   this.$Message.success({content:response.data.message,onClose:function(){
 		        						   GPageModel.close();
 		        					   }});
