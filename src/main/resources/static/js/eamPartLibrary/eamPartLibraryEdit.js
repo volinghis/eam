@@ -1,6 +1,7 @@
 var pageEdit = {
     data () {
         return {
+        	disabled:false,
         	edmPartLibrary: {
         		deviceName: '',
         		deviceCode: '',
@@ -46,7 +47,8 @@ var pageEdit = {
         		unit: [
 	            	{ required: true, message: '单位不能为空', trigger: 'blur' }
             	]
-            }
+            },
+            current:0
         }
     },
     mounted : function() {
@@ -56,6 +58,11 @@ var pageEdit = {
 			axios.get('/eam/eam/eamPartLibrary/getEamPartLibrary?key='+key).then(response => {
 				s.edmPartLibrary=Object.assign(s.edmPartLibrary,response.data);
 			});
+		}
+		var dss=getQueryString(location.href,"disable");
+		if (dss && dss != null && dss != '') {
+			console.log(dss);
+			this.disabled=true;
 		}
 	},
     methods: {
@@ -87,7 +94,14 @@ var pageEdit = {
     	},
 	    handleReset () {
 	        this.$refs['editForm'].resetFields();
-	    }
+	    },
+	    next () {
+            if (this.current == 3) {
+                this.current = 0;
+            } else {
+                this.current += 1;
+            }
+        }
     }
 }
 var PageEdit = Vue.extend(pageEdit);
