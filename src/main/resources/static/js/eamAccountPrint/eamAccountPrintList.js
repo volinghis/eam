@@ -20,6 +20,23 @@ var eamAccountPrintPage=new Vue({
                     key: 'deviceNum'
                 },
                 {
+                    title: '资料完善度',
+                    width:200,
+                    align:'center',
+                    key: 'completePoint',
+                    render: (h, params) => {
+                        return h('i-progress', {
+                                props: {
+                                	percent: params.row.completePoint,
+                                	strokeColor:['#2d8cf0','#19be6b'],
+                                	textInside:true,
+                                	strokeWidth:20
+                                }
+                            });
+                    }
+                    	
+                },
+                {
                     title: '设备名称',
                     key: 'deviceName'
                 },
