@@ -14,71 +14,122 @@ var partLibraryList = new Vue({
         	 listColumns: [
                  {
                      type: 'index',
-                     width: 60,
+                     width: 50,
+                     fixed: 'left',
+                     resizable: true,
                      align: 'center'
                  },
                  {
                      title: '备件编号',
                      key: 'deviceCode',
+                     width: 180,
+                     fixed: 'left',
+                     resizable: true,
                      align: 'center'
                  },
                  {
                      title: '备件名称',
                      key: 'deviceName',
+                     width: 180,
+                     fixed: 'left',
+                     resizable: true,
                      align: 'center'
                  },
                  {
                      title: '备件型号',
                      key: 'model',
+                     width: 150,
+                     
+                     resizable: true,
                      align: 'center'
                  },
                  {
                      title: '备件类型',
                      key: 'type',
+                     width: 150,
+                     
+                     resizable: true,
                      align: 'center'
                  },
                  {
                      title: '品牌',
                      key: 'brand',
+                     width: 105,
+                     
+                     resizable: true,
                      align: 'center'
                  },
                  {
                      title: '规格',
                      key: 'norm',
+                     width: 150,
+                     
+                     resizable: true,
                      align: 'center'
                  },
                  {
                      title: '所在仓库',
-                     key: 'Warehouse',
+                     width: 150,
+                     
+                     key: 'warehouse',
+                     resizable: true,
                      align: 'center'
                  },
                  {
                      title: '单位',
                      key: 'unit',
+                     
+                     width: 100,
+                     resizable: true,
                      align: 'center'
                  },
                  {
                      title: '价格',
                      key: 'price',
+                     width: 100,
+                     
+                     resizable: true,
                      align: 'center'
                  },
                  {
                      title: '数量',
                      key: 'amount',
+                     width: 100,
+                     
+                     resizable: true,
                      align: 'center'
                  },
                  {
                      title: '库存预警值',
                      key: 'warningValue',
+                     width: 100,
+                     
+                     resizable: true,
                      align: 'center'
                  },
                  {
                      title: '操作',
                      key: 'action',
-                     width: 150,
+                     width: 250,
+                     fixed: 'right',
+                     resizable: true,
                      align: 'center',
                      render: (h, params) => {
-                         return h('div', [
+                    	 return h('div', [
+                    		 h('Button', {
+                    			 props: {
+                    				 type: 'primary',
+                    				 size: 'small'
+                    			 },
+                    			 style: {
+                    				 marginRight: '5px'
+                    			 },
+                    			 on: {
+                    				 click: () => {
+                    					 this.show( params.row.key)
+                    				 }
+                    			 }
+                    		 }, '查看详情'),
                              h('Button', {
                                  props: {
                                      type: 'primary',
@@ -131,42 +182,40 @@ var partLibraryList = new Vue({
 			axios.post('/eam/eam/eamPartLibrary/getEamPartLibraryList',_this.queryBean).then(response => {
 				_this.queryBean.totalCount=response.data.totalCount;
 				_this.queryBean.dataList=response.data.dataList;
-				
 			});
     	},
         show(index) {
-        	var c={title:'编辑备件',url:'/eam/html/eamPartLibrary/eamPartLibraryEdit.html?key='+index};
+        	var c={title:'编辑备件',url:'/eam/html/eamPartLibrary/eamPartLibraryEdit.html?key='+index,height:500,width:800};
         	GPageModel.info(c);
         },
         add:function(){
-       	 	var c={title:'新增备件',url:'/eam/html/eamPartLibrary/eamPartLibraryEdit.html',height:500,width:700};
+       	 	var c={title:'新增备件',url:'/eam/html/eamPartLibrary/eamPartLibraryEdit.html',height:500,width:800};
        	 	GPageModel.info(c);
     	},
         remove:function(index) {
     		this.$Modal.confirm({
-					title:'',
-					content:'删除后数据将无法恢复，是否继续？',
-					onOk:function(){
-						var _this=this;
-						_this.$Spin.show();
-		    			axios.get('/org/orgUser/deleteOrgUser?key='+index).then(response => {
-		    				   if(response.data.resultType=='ok'){
-		    					   partLibraryList.flushData();
-		    					   this.$Message.success({content:response.data.message,onClose:function(){
-		    						   
-		    					   }});
-		    					   
-			        		   }else{
-			        			   this.$Message.error({content:response.data.message});
-			        		   }
-		    			}).catch(function(error){
-		    				
-		    			}).then(function () {
-		    				_this.$Spin.hide();
-		    			});
-					}
-				});
-
+				title:'',
+				content:'删除后数据将无法恢复，是否继续？',
+				onOk:function(){
+					var _this=this;
+					_this.$Spin.show();
+	    			axios.get('/eam/eam/eamPartLibrary/deleteEamPartLibrary?key='+index).then(response => {
+	    				   if(response.data.resultType=='ok'){
+	    					   partLibraryList.flushData();
+	    					   this.$Message.success({content:response.data.message,onClose:function(){
+	    						   
+	    					   }});
+	    					   
+		        		   }else{
+		        			   this.$Message.error({content:response.data.message});
+		        		   }
+	    			}).catch(function(error){
+	    				
+	    			}).then(function () {
+	    				_this.$Spin.hide();
+	    			});
+				}
+			});
         }
     },
 	el:'#partLibraryList'

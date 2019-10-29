@@ -39,7 +39,7 @@ public class EamPartLibrary extends BaseEntity {
 	public static final String TYPE="type";
 	public static final String BRAND="brand";
 	public static final String NORM="norm";
-	public static final String WAREHOUSE="Warehouse";
+	public static final String WAREHOUSE="warehouse";
 	public static final String UNIT="unit";
 	public static final String PRICE="price";
 	public static final String AMOUNT="amount";
@@ -93,7 +93,7 @@ public class EamPartLibrary extends BaseEntity {
 	/**
 	 * 所在仓库
 	 */
-	private String Warehouse;
+	private String warehouse;
 	
 	/**
 	 * 单位
@@ -217,11 +217,11 @@ public class EamPartLibrary extends BaseEntity {
 	}
 
 	public String getWarehouse() {
-		return Warehouse;
+		return warehouse;
 	}
 
 	public void setWarehouse(String warehouse) {
-		Warehouse = warehouse;
+		this.warehouse = warehouse;
 	}
 
 	public char getUnit() {
