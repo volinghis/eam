@@ -5,7 +5,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "EAM_PART_LIBRARY_HIS")
-public class EamPartLbraryHis extends EamPartLibrary {
+public class EamPartLibraryHis extends EamPartLibrary {
 
 	// @Fields serialVersionUID : TODO
 	private static final long serialVersionUID = 1L;
