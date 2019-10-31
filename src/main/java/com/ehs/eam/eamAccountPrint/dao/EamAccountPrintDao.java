@@ -36,7 +36,7 @@ import com.ehs.eam.eamAccountPrint.entity.EamAccountPrint;
 @Repository
 public interface EamAccountPrintDao  extends JpaRepository<EamAccountPrint, String>,JpaSpecificationExecutor<EamAccountPrint>{
 	
-	@Query(" select ep from EamAccountPrint ep where ep."+BaseEntity.VERSION_ID+" = "+DataConfig.VERSION_EFFECTIVE+" and ep."+EamAccountPrint.DEVICE_NUM+" like %?1%  order by "+BaseEntity.CREATION_TIME+" desc")
+	@Query(" select ep from EamAccountPrint ep where ep."+EamAccountPrint.DEVICE_NUM+" like %?1%  order by "+BaseEntity.CREATION_TIME+" desc")
 	public Page<EamAccountPrint> findEamAccountPrint(String query,Pageable pageable);
 
 }
