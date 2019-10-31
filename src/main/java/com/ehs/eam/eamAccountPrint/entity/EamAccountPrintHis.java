@@ -11,6 +11,8 @@ package com.ehs.eam.eamAccountPrint.entity;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.ehs.eam.eamAccountPrint.entity.entitySuper.EamAccountPrint;
+
 /**   
 * Copyright: Copyright (c) 2019 西安东恒鑫源软件开发有限公司
 * @ClassName: EamAccountPrintHis.java
