@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.ehs.common.base.config.DataConfig;
 import com.ehs.common.base.entity.BaseEntity;
 import com.ehs.eam.eamPartLibrary.entity.EamPartLibrary;
 
@@ -27,7 +26,7 @@ import com.ehs.eam.eamPartLibrary.entity.EamPartLibrary;
 @Repository
 public interface EamPartLibraryDao extends JpaRepository<EamPartLibrary, String> {
 
-	@Query(" select e from EamPartLibrary e where e."+BaseEntity.VERSION_ID+" = "+DataConfig.VERSION_EFFECTIVE+" and (e."+EamPartLibrary.DEVICE_CODE+" like %?1% or e."+EamPartLibrary.DEVICE_NAME+" like %?1% ) order by "+BaseEntity.CREATION_TIME+" desc")
+	@Query(" select e from EamPartLibrary e where (e."+EamPartLibrary.DEVICE_CODE+" like %?1% or e."+EamPartLibrary.DEVICE_NAME+" like %?1% ) order by "+BaseEntity.CREATION_TIME+" desc")
 	public Page<EamPartLibrary> findEamPart(String query, Pageable pageable);
 	
 }
