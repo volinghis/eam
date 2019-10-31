@@ -12,11 +12,14 @@ var eamAccountPrintPage=new Vue({
         	listColumns: [
                 {
                     type: 'index',
+                    fixed: 'left',
                     width: 60,
                     align: 'center'
                 },
                 {
                     title: '设备编号',
+                    fixed: 'left',
+                    width: 150,
                     key: 'deviceNum'
                 },
                 {
@@ -28,9 +31,9 @@ var eamAccountPrintPage=new Vue({
                         return h('i-progress', {
                                 props: {
                                 	percent: params.row.completePoint,
-                                	strokeColor:['#2d8cf0','#19be6b'],
+                                	strokeColor:['#ed4014','#19be6b'],
                                 	textInside:true,
-                                	strokeWidth:20
+                                	strokeWidth:18
                                 }
                             });
                     }
@@ -38,59 +41,108 @@ var eamAccountPrintPage=new Vue({
                 },
                 {
                     title: '设备名称',
+                    width: 150,
                     key: 'deviceName'
                 },
                 {
                     title: '生产厂家',
+                    width: 150,
                     key: 'factoryName',
                     tooltip:true
                 },
                 {
+                	title: '供应商',
+                	width: 150,
+                	key: 'supplier',
+                	tooltip:true
+                },
+                {
                     title: '安装位置',
+                    width: 150,
                     key: 'installLocation'
                 },
                 {
+                	title: '启用日期',
+                	width: 120,
+                	key: 'runDate'
+                },
+                {
                     title: '采购时间',
+                    width: 120,
                     key: 'purchaseTime'
                 },
                 {
+                	title: '保修期',
+                	width: 80,
+                	key: 'warranty'
+                },
+                {
+                	title: '检修频率',
+                	width: 100,
+                	key: 'repairFrequency'
+                },
+                {
                 	title: '采购价格',
+                	width: 100,
                 	key: 'buyingPrice'
                 },
                 {
+                	title: '使用寿命',
+                	width: 100,
+                	key: 'serviceLife'
+                },
+                {
+                	title: '负责人',
+                	width: 150,
+                	key: 'person'
+                },
+                {
                 	title: '设备状态',
+                	width:100,
+                	align:'center',
                 	key: 'deviceStatus',
                 	render: (h, params) => {
                 		 var s = params.row.deviceStatus; 
                 		 var status,text;
-                         if (s==='normal'){ 
-                        	text='正常';
-                        	status='success';
-                         };
-                         if (s==='error'){ 
-                        	 text='故障';
-                        	 status='error';
-                         };
-                         if (s==='maintenance'){ 
-                        	 text='保养';
-                        	 status='warning';
-                         };
-                         if (s==='idle'){ 
-                        	 text='闲置';
-                        	 status='processing';
-                         };
-                         return h('Badge', {
-                             props: {
-                            	 status: status,
-                            	 text:text
-                             }
-                         });
+                		 switch(s){
+                		   case 'normal':
+                			   text='正常';
+                           	   status='success';
+                           break;
+                		   case 'error':
+                			   text='故障';
+                			   status='error';
+                			   break;
+                		   case 'maintenance':
+                			   text='保养';
+                			   status='warning';
+                			   break;
+                		   case 'idle':
+                			   text='闲置';
+                			   status='processing';
+                			   break;
+                		 }
+                         return h('Tooltip',{
+                        	 props:{ 
+                        		 content:text,
+                        		 theme:'light',
+                        		 placement:'right'
+                        	 }},[h('Badge',{
+                        	 props:{
+                        		 status:status
+                        	 }
+                        	 })]);
                     }
+                },
+                {
+                	title: '备注',
+                	width: 150,
+                	key: 'remarks'
                 },
                 {
                     title: '操作',
                     key: 'action',
-                    width: 160,
+                    width: 150,
                     fixed: 'right',
                     align: 'center',
                     render: (h, params) => {
@@ -108,7 +160,7 @@ var eamAccountPrintPage=new Vue({
                                         this.show( params.row.key)
                                     }
                                 }
-                            }, '编辑'),
+                            }, '完善资料'),
                             h('Button', {
                                 props: {
                                     type: 'error',
@@ -154,7 +206,7 @@ var eamAccountPrintPage=new Vue({
         	GPageModel.info(c);
         },
         add:function(){
-        	var c={title:'新增设备台账',url:'/eam/html/eamAccountPrint/eamAccountPrintEdit.html',height:500,width:800};
+        	var c={title:'新增设备台账',url:'/eam/html/eamAccountPrint/eamAccountPrintAdd.html',height:120};
         	GPageModel.info(c);
         },
         exportData () {

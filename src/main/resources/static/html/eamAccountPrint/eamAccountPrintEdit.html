@@ -3,12 +3,6 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="/js/boot/boot.js" type="text/javascript"></script>
-<style type="text/css">
-html{
-height: 100%;
-width: 100%;
-}
-</style>
 </head>
 <body>
 <div id="pageEdit">
@@ -22,14 +16,34 @@ width: 100%;
         <form-item label="生产厂家	" prop="factoryName">
             <i-input v-model="editModel.factoryName" size="large"><span slot="prepend" type="ios-contact"><Icon type="ios-menu-outline" /></span></i-input>
         </form-item>
-        <form-item label="安装位置	" prop="installLocation">
-            <i-input v-model="editModel.installLocation" size="large" ><span slot="prepend" type="ios-contact"><Icon type="ios-menu-outline" /></span></i-input>
+        <form-item label="供应商	" prop="supplier">
+            <i-input v-model="editModel.supplier" size="large"><span slot="prepend" type="ios-contact"><Icon type="ios-menu-outline" /></span></i-input>
+        </form-item>
+        <form-item label="安装位置	"  prop="installLocation">
+             <i-select v-model="editModel.installLocation" size="large" style="width:216px">
+                <i-option value="位置1">位置1</i-option>
+                <i-option value="位置2">位置2</i-option>
+                <i-option value="位置3">位置3</i-option>
+                <i-option value="位置4">位置4 </i-option>
+            </i-select>
+        </form-item>
+        <form-item label="启用日期	" prop="runDate">
+            <date-picker v-model="editModel.runDate" size="large" ><span slot="prepend" type="ios-contact"><Icon type="ios-menu-outline" /></span></date-picker>
         </form-item>
         <form-item label="采购时间	" prop="purchaseTime">
             <date-picker v-model="editModel.purchaseTime" size="large" type="date" style="width:215px"></date-picker>
         </form-item>
+        <form-item label="保修期	" prop="warranty">
+            <i-input v-model="editModel.warranty" size="large"><span slot="prepend" type="ios-contact"><Icon type="ios-menu-outline" /></span></i-input>
+        </form-item>
         <form-item label="采购价格	" prop="buyingPrice">
             <i-input v-model="editModel.buyingPrice" size="large"><span slot="prepend" type="ios-contact"><Icon type="ios-menu-outline" /></span></i-input>
+        </form-item>
+        <form-item label="使用寿命	" prop="serviceLife">
+            <i-input v-model="editModel.serviceLife" size="large"><span slot="prepend" type="ios-contact"><Icon type="ios-menu-outline" /></span></i-input>
+        </form-item>
+        <form-item label="负责人	" prop="person">
+            <i-input v-model="editModel.person" size="large"><span slot="prepend" type="ios-contact"><Icon type="ios-menu-outline" /></span></i-input>
         </form-item>
         <form-item label="设备状态	" prop="deviceStatus"><span slot="prepend" type="ios-contact"><Icon type="ios-menu-outline" /></span>
             <i-select v-model="editModel.deviceStatus" size="large" style="width:216px">
@@ -38,6 +52,9 @@ width: 100%;
                 <i-option value="maintenance">保养</i-option>
                 <i-option value="idle">闲置</i-option>
             </i-select>
+        </form-item>
+        <form-item label="检修频率	" prop="repairFrequency">
+            <input-number v-model="editModel.repairFrequency" :editable="false"></input-number>&nbsp;<span>月</span>
         </form-item>
         </br>
         <form-item label="备注" prop="remarks" >

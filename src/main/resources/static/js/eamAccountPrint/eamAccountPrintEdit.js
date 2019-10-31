@@ -5,6 +5,7 @@ var pageEdit = {
             		deviceNum: '',
             		deviceName: '',
             		factoryName:'',
+            		supplier:'',
             		installLocation:'',
             		purchaseTime:'',
             		buyingPrice:0,
@@ -13,15 +14,6 @@ var pageEdit = {
                 editRuleValidate: {
                 	deviceName: [
                         { required: true, message: '设备名称不能为空', trigger: 'blur' }
-                    ],
-                    deviceNum: [
-                        { required: true, message: '设备编号不能为空', trigger: 'blur' }
-                    ],
-                    purchaseTime: [
-                        { required: true, type: 'date', message: '请选择采购日期', trigger: 'change' }
-                    ] ,
-                    deviceStatus: [
-                        { required: true, message: '请选择设备状态', trigger: 'change' }
                     ]
                 }
             }

@@ -9,14 +9,14 @@
 package com.ehs.eam.eamAccountPrint.controller;
 
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
+import javax.annotation.Resource;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ehs.common.auth.entity.SysRole;
 import com.ehs.common.base.service.BaseCommonService;
 import com.ehs.common.base.utils.JsonUtils;
 import com.ehs.common.oper.bean.PageInfoBean;
@@ -92,6 +92,13 @@ public class EamAccountPrintController {
 	public String saveEamAccountPrint(@RequestBody EamAccountPrint eamAccountPrint) {
 		System.out.println("=========="+JsonUtils.toJsonString(eamAccountPrint));
 		ResultBean resultBean=new ResultBean();
+		List<EamAccountPrint> roleInfoList=	(List<EamAccountPrint>)baseCommonService.findAll(EamAccountPrint.class);
+		if (roleInfoList!=null&&roleInfoList.size()>0) {
+			long c=roleInfoList.stream().filter(s->StringUtils.equals(s.getDeviceName(),eamAccountPrint.getDeviceName())&&!StringUtils.equals(s.getDeviceNum(), eamAccountPrint.getDeviceNum())).count();
+			if(c>0) {
+				return JsonUtils.toJsonString(resultBean.error("保存失败:已存在相同设备编号或设备名称"));
+			}
+		}
 		EamAccountPrint ep=	baseCommonService.saveOrUpdate(eamAccountPrint);
 		return JsonUtils.toJsonString(resultBean.ok("保存成功",ep.getKey()));
 	}
